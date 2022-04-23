@@ -1,0 +1,55 @@
+--[[
+    Produced#6899
+    
+    Roblox cannot read the messages you send only you can and people that run this script can. Roblox does not understand a single word you send and
+    will think you are typing ranom words, so you can say stuff like "daddy please" andd it wont get tagged. I would recommend not to edit the code otherwise 
+    you may mess the code up. this is useful for telling your friends things that you want private. You can make this better and have your own private chatting system signal
+    using encryption and a key. 
+    Example of use
+
+    /pv hey can you tell me what method your using
+    /pv sure its the crashing method you can make it by spamming a remote
+    /pv alright thanks
+    also if u want to give sound ids
+
+    /pv dogman
+    /pv thanksss
+]]
+
+local signal = _G.ENCRYPTKEY
+
+local mt = getrawmetatable(game)
+local m 
+m = hookfunction(mt.__namecall, function(...)
+    local method = getnamecallmethod()
+    local args = {...}
+        if method == 'FireServer' and args[1].Name == 'SayMessageRequest' then 
+            if args[2]:find('/pv') then 
+                args[2] = 'Encrypted: '..(crypt.encrypt or syn.crypt.encrypt)(args[2]:gsub('/pv', ''), signal)
+                return m(unpack(args))
+            end
+        end
+
+    return m(...)
+end)
+
+task.spawn(function()
+    while wait(.1) do
+        for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.BubbleChat:GetDescendants()) do 
+            if v:IsA('BillboardGui') then 
+                for i,k in pairs(v:GetChildren()) do 
+                    if k.Name == 'BillboardFrame' then
+                        for i,l in pairs(k:GetChildren()) do 
+                            if l.Name == 'ChatBubble' and l:FindFirstChild('BubbleText') then 
+                                local text = l.BubbleText; local output; local num = 0
+                                if text.Text:find('Encrypted: ') then 
+                                    text.Text = (crypt.decrypt or syn.crypt.decrypt)(text.Text:gsub('Encrypted: ', ''), signal)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
