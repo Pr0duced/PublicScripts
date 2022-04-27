@@ -12,6 +12,9 @@ Created by pr0duced.
 
 This will be updated every day.
 
+
+SCRIPT TO ADD TO YOUR SCRIPT:
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Pr0duced/PublicScripts/main/GETO%20library.lua'))()
 ]]
 
 function geto.FindPlayer(str)
