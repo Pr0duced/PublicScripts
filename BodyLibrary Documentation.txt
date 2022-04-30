@@ -36,6 +36,24 @@
             ['P'] = 1e5,
             ['MaxTorque'] = Vector3.new(1/0,1/0,1/0)
         })
+--------------------------------    
+    body.releasehats(Part, Table, Table2)
+
+    Table 1 is the properties for BodyPosition
+    Table 2 is the properties for BodyGyro
+    Part Is the part that is getting bodyposition and bodygyrod
+    
+    This is for a faster use of body.connect which bodypositions every hat and sets the hats up
+
+     body.releasetools(v.Handle,{ 
+            ['P'] = 1e5,
+            ['D'] = 0,
+            ['MaxForce'] = Vector3.new(1/0,1/0,1/0)
+        }, 
+        { 
+            ['P'] = 1e5,
+            ['MaxTorque'] = Vector3.new(1/0,1/0,1/0)
+        })
 --------------------------------
     body.velocity(Part, Vector)
 
@@ -74,6 +92,10 @@
     body.autovelocitytools(Vector)
 
     Auto loop velocity all tools that have BodyPosition and BodyGyro
+--------------------------------
+    body.autovelocityhats(Vector)
+
+    Auto loop velocity all hats that have BodyPosition and BodyGyro
 --------------------------------
     body.toolamount()
     Returns amount of tools in Character
