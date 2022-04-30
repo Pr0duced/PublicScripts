@@ -99,7 +99,7 @@ end
 
 function body.releasetools(t,t2) -- [[ Takes out tools and runs bodyposition and bodygyro ]]
     for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do 
-        if v:IsA('Tool') and v:FindFirstChild('Handle') and not v:FindFirstChild('BodyPosition') then -- [[ Checks if its a tool and has handle ]]
+        if v:IsA('Tool') and v:FindFirstChild('Handle') and not v.Handle:FindFirstChild('BodyPosition') then -- [[ Checks if its a tool and has handle ]]
             game.Players.LocalPlayer.Character.Humanoid:EquipTool(v) -- [[ Equips the tool ]]
             wait(.1)
             body.connect(v.Handle,t,t2) -- [[ Runs the function ]]
@@ -110,7 +110,7 @@ end
 
 function body.releasehats(t,t2) -- [[ Takes out tools and runs bodyposition and bodygyro ]]
     for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do 
-        if v:IsA('Hat') or v:IsA('Accessory') and v:FindFirstChild('Handle') and not v:FindFirstChild('BodyPosition') then -- [[ Checks if its a tool and has handle ]]
+        if v:IsA('Hat') or v:IsA('Accessory') and v:FindFirstChild('Handle') and not v.Handle:FindFirstChild('BodyPosition') then -- [[ Checks if its a tool and has handle ]]
             game.Players.LocalPlayer.Character.Humanoid:EquipTool(v) -- [[ Equips the tool ]]
             body.connect(v.Handle,t,t2) -- [[ Runs the function ]]
         end
