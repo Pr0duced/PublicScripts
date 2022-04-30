@@ -76,14 +76,17 @@ function body.getbodyP(part)
                 return v -- [[ Returns bpos ]]
             end
         end
+        return nil
     else 
         error(debug.traceback('Part is nil')) -- [[ Showed which line errored ]]
     end
 end
 
 function body.setposition(part, pos)
-    if part ~= nil and type(pos) == 'vector' and part:IsA('BasePart') or part:IsA('Part') then 
-        body.getbodyP(part).Position = pos -- [[ Sets bodyposition Position to pos which is supposed to be a vector3 ]]
+    if part and type(pos) == 'vector' and part:IsA('BasePart') or part:IsA('Part') then 
+        if body.getbodyP(part) then
+            body.getbodyP(part).Position = pos -- [[ Sets bodyposition Position to pos which is supposed to be a vector3 ]]
+        end
     else 
         error(debug.traceback('Position or part is nil')) -- [[ Showed which line errored ]]
     end
@@ -91,7 +94,9 @@ end
 
 function body.setgyro(part, cf)
     if part ~= nil and type(cf) == 'userdata' and part:IsA('Part') or part:IsA('BasePart') then 
-        body.getbodyG(part).CFrame = cf -- [[ Sets bgyro CFrame to cf which is supposed to be a cframe ]]
+        if body.getgbodyG(part) then 
+            body.getbodyG(part).CFrame = cf -- [[ Sets bgyro CFrame to cf which is supposed to be a cframe ]]
+        end
     else 
         error(debug.traceback('CFrame or Part is nil')) -- [[ Shows which line errored ]]
     end
@@ -106,6 +111,16 @@ function body.releasetools(t,t2) -- [[ Takes out tools and runs bodyposition and
         end
     end
 end
+
+function body.stoptoolanimation()
+    for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+        if v ~= nil and v.Animation.AnimationId == game.Players.LocalPlayer.Character.Animate.toolnone.ToolNoneAnim.AnimationId then
+            v:Stop()
+        end
+    end
+end
+
+
 
 
 function body.releasehats(t,t2) -- [[ Takes out tools and runs bodyposition and bodygyro ]]
