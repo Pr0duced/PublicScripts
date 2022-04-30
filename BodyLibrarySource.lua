@@ -26,12 +26,10 @@ function body.connect(part,t,t2) --[[ Too lazy to add notes here ]]
 
         for i,v in pairs(info) do 
             bp[i] = v
-            print(i, v)
         end
 
         for i,v in pairs(info2) do 
             bg[i] = v
-            print(i, v)
         end
 
         bp.Position = part.Position
