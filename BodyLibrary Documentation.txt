@@ -100,6 +100,9 @@
     body.toolamount()
     Returns amount of tools in Character
 --------------------------------
+    body.stoptoolanimation()
+    Temporarily stops any tool animation that is currently on
+--------------------------------
 
 
 How to use?
