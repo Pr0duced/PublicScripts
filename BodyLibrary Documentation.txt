@@ -82,4 +82,9 @@
 
 How to use?
 
-loadstring(game:HttpGet(''))
+local body = loadstring(game:HttpGet('https://raw.githubusercontent.com/Pr0duced/PublicScripts/main/BodyLibrarySource.lua'))()
+You can name the variable anything
+local chicken = loadstring(game:HttpGet('https://raw.githubusercontent.com/Pr0duced/PublicScripts/main/BodyLibrarySource.lua'))()
+
+chicken.clean()
+
