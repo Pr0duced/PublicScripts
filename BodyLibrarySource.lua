@@ -82,7 +82,7 @@ function body.getbodyP(part)
 end
 
 function body.setposition(part, pos)
-    if type(pos) == 'vector' and part:IsA('BasePart') or part:IsA('Part') then 
+    if part ~= nil and type(pos) == 'vector' and part:IsA('BasePart') or part:IsA('Part') then 
         body.getbodyP(part).Position = pos -- [[ Sets bodyposition Position to pos which is supposed to be a vector3 ]]
     else 
         error(debug.traceback('Position or part is nil')) -- [[ Showed which line errored ]]
@@ -90,7 +90,7 @@ function body.setposition(part, pos)
 end
 
 function body.setgyro(part, cf)
-    if type(cf) == 'userdata' and part:IsA('Part') or part:IsA('BasePart') then 
+    if part ~= nil and type(cf) == 'userdata' and part:IsA('Part') or part:IsA('BasePart') then 
         body.getbodyG(part).CFrame = cf -- [[ Sets bgyro CFrame to cf which is supposed to be a cframe ]]
     else 
         error(debug.traceback('CFrame or Part is nil')) -- [[ Shows which line errored ]]
@@ -109,7 +109,7 @@ end
 
 
 function body.releasehats(t,t2) -- [[ Takes out tools and runs bodyposition and bodygyro ]]
-    for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do 
+    for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do 
         if v:IsA('Hat') or v:IsA('Accessory') and v:FindFirstChild('Handle') and not v.Handle:FindFirstChild('BodyPosition') then -- [[ Checks if its a tool and has handle ]]
             game.Players.LocalPlayer.Character.Humanoid:EquipTool(v) -- [[ Equips the tool ]]
             body.connect(v.Handle,t,t2) -- [[ Runs the function ]]
@@ -179,5 +179,12 @@ function body.toolamount()
     return amount
 end
 
+function body.hatamount()
+    local amount = 0
+    for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do 
+        if v:IsA('Hat') or v:IsA('Accessory') and v:FindFirstChild('Handle') then amount += 1 end
+    end
+    return amount
+end
 
 return body
