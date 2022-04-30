@@ -126,6 +126,9 @@ function body.autovelocitytools(pos)
                         body.velocity(v.Handle, pos)
                     end
                 end
+                if game.Players.LocalPlayer.Backpack:FindFirstChildOfClass('Tool') then 
+                    break
+                end
                 body.fastwait()
             end
         end)
