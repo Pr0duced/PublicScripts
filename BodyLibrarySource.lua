@@ -153,7 +153,7 @@ function body.autovelocityhats(pos)
                         body.velocity(v.Handle, pos)
                     end
                 end
-                if game.Players.LocalPlayer.Backpack:FindFirstChildOfClass('Tool') then 
+                if not game.Players.LocalPlayer.Character:FindFirstChild('Humanoid') or game.Players.LocalPlayer.Character.Humanoid.Health < 1 then 
                     break
                 end
                 body.fastwait()
