@@ -136,6 +136,7 @@ function body.autoclean()
     task.spawn(function()
         while true do 
             body.clean()
+            body.fastwait()
         end
     end)
 end
