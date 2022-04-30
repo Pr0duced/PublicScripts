@@ -1,4 +1,9 @@
 
+--[[
+    DOCUMENTATION:
+        https://github.com/Pr0duced/PublicScripts/blob/main/BodyLibrary%20Documentation.txt
+]]
+
 local body = {}
 
 function body.fastwait() 
