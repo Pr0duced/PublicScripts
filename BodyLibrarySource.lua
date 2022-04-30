@@ -132,7 +132,7 @@ function body.autovelocitytools(pos)
     end
 end
 
-function body.autoautoclean()
+function body.autoclean()
     task.spawn(function()
         while true do 
             body.clean()
