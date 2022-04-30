@@ -1,4 +1,3 @@
-
 --[[
     DOCUMENTATION:
         https://github.com/Pr0duced/PublicScripts/blob/main/BodyLibrary%20Documentation.txt
@@ -109,6 +108,16 @@ function body.releasetools(t,t2) -- [[ Takes out tools and runs bodyposition and
 end
 
 
+function body.releasehats(t,t2) -- [[ Takes out tools and runs bodyposition and bodygyro ]]
+    for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do 
+        if v:IsA('Hat') or v:IsA('Accessory') and v:FindFirstChild('Handle') and not v:FindFirstChild('BodyPosition') then -- [[ Checks if its a tool and has handle ]]
+            game.Players.LocalPlayer.Character.Humanoid:EquipTool(v) -- [[ Equips the tool ]]
+            body.connect(v.Handle,t,t2) -- [[ Runs the function ]]
+        end
+    end
+end
+
+
 function body.clean()
     for _,v in pairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do 
         if v:IsA('BodyPosition') or v:IsA('BodyGyro') then 
@@ -123,6 +132,24 @@ function body.autovelocitytools(pos)
             while true do
                 for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
                     if v:IsA('Tool') and v:FindFirstChild('Handle') and v.Handle:FindFirstChild('BodyPosition') then 
+                        body.velocity(v.Handle, pos)
+                    end
+                end
+                if game.Players.LocalPlayer.Backpack:FindFirstChildOfClass('Tool') then 
+                    break
+                end
+                body.fastwait()
+            end
+        end)
+    end
+end
+
+function body.autovelocityhats(pos)
+    if type(pos) == 'vector' then 
+        task.spawn(function()
+            while true do
+                for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA('Hat') or v:IsA('Accessory') and v:FindFirstChild('Handle') and v.Handle:FindFirstChild('BodyPosition') then 
                         body.velocity(v.Handle, pos)
                     end
                 end
