@@ -1,6 +1,6 @@
 local r = {}
 
-r.findservice = function(entity)
+function r.findservice(entity)
     for _,v in pairs(game:GetChildren()) do 
         if entity:IsDescendantOf(v) then 
             return v
@@ -8,7 +8,7 @@ r.findservice = function(entity)
     end
 end
 
-r.iscore() = function()
+function r.iscore()
     local ignore = {
         "CorePackages",
         "Chat"
